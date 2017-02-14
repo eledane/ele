@@ -4,3 +4,4 @@ themes/ele/templates/*.swap
 .DS_Store
 sites/default/services.yml
 sites/default/settings.php
+sites/default/files/*
