@@ -1,0 +1,6 @@
+#ignore the following files 
+themes/ele/templates/*.html
+themes/ele/templates/*.swap
+.DS_Store
+sites/default/services.yml
+sites/default/settings.php

@@ -1,0 +1,6 @@
+name: My Module!
+type: module
+description: Customized module for drupal8 site by alex!
+package: Alex
+core: 8.x
+
