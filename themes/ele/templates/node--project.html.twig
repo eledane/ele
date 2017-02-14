@@ -71,11 +71,11 @@
  */
 #}
 	<!-- Begin Small Hero Block -->
-	<section class="hero small accent parallax" style="background-image: url({{ base_path ~ directory }}/images/hero-project.jpg);">
+	<section class="hero small accent parallax" style="background-image: url({{ file_url( directory ~ '/images/hero-project.jpg') }}">
 
 		<!-- Heading -->
 		<div class="hero-content container">
-			<h1>Project Name.</h1>
+			<h1>{{ node.getTitle }}.</h1>
 		</div><!-- END -->
 
 		<!-- Navigation -->
@@ -112,7 +112,7 @@
 		<!-- Button -->
 		<div class="row">
 			<div class="center padded col-sm-12">
-				<a href="#" class="button accent">View online</a>
+				<a href="{{ content.field_url }}" target="_blank" class="button accent">View online</a>
 			</div>
 		</div><!-- END -->
 	</section>
@@ -121,10 +121,10 @@
 	<!-- Begin Project Slider Block -->
 	<section class="project-gallery">
 		<ul class="project-slider">
-			<li><img class="bg-check" src="{{ base_path ~ directory }}/images/work/slide1.jpg" alt=""></li>
-			<li><img class="bg-check" src="{{ base_path ~ directory }}/images/work/slide2.jpg" alt=""></li>
-			<li><img class="bg-check" src="{{ base_path ~ directory }}/images/work/slide3.jpg" alt=""></li>
-			<li><img class="bg-check" src="{{ base_path ~ directory }}/images/work/slide4.jpg" alt=""></li>
+			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide1.jpg') }}" alt=""></li>
+			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide2.jpg') }}" alt=""></li>
+			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide3.jpg') }}" alt=""></li>
+			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide4.jpg') }}" alt=""></li>
 		</ul>
 		<div class="project-prev"></div>
 		<div class="project-next"></div>

@@ -11,4 +11,7 @@ global-js:
     js/retina.js: { scope: footer }
     js/backgroundcheck.js: { scope: footer }
     js/plugins.js: { scope: footer }
-    js/main.js: { scope: footer}
+    js/main.js: { scope: footer} 
+
+  dependencies:
+    - core/jquery 
