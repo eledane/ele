@@ -71,6 +71,7 @@
  */
 #}
 	<!-- Begin Small Hero Block -->
+  {{ file_url(node.field_project_header_background.entity.fileuri) }}
 	<section class="hero small accent parallax" style="background-image: url({{ file_url( directory ~ '/images/hero-project.jpg') }}">
 
 		<!-- Heading -->
@@ -81,9 +82,9 @@
 		<!-- Navigation -->
 		<div class="sub-hero container">
 			<ul class="project-nav">
-				<li class="prev-project clearfix"><a href="#">Previous</a></li>
+				<li class="prev-project clearfix"><a href="#">{{ 'Previous'|t }}</a></li>
 				<li class="all-project clearfix"><a href="portfolio.html"><i class="icon keypad white"></i></a></li>
-				<li class="next-project clearfix"><a href="#">Next</a></li>
+				<li class="next-project clearfix"><a href="#">{{ 'Next'|t }}</a></li>
 			</ul>
 		</div><!-- END -->
 
@@ -93,26 +94,13 @@
 	<!-- Begin Overview Block -->
 	<section class="center-mobile overview-block content container">
 		<div class="row">
-
-			<div class="col-sm-4">
-				<h2>Challange.</h2>
-				<p>Vivamus iaculis metus eget nibh dapibus fringilla. Duis vel justo venenatis ligula bibendum vulputate et et tellus.</p>
-			</div>
-			<div class="col-sm-4">
-				<h2>Solution.</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nunc risus, ac vehicula turpis. Duis fringilla fringilla lorem, at ultricies tortor.</p>
-			</div>
-			<div class="col-sm-4">
-				<h2>Result.</h2>
-				<p>Duis fringilla fringilla lorem, at ultricies tortor. Et harum quidem rerum facilis est et expedita distinctio.</p>
-			</div>
-
+    {{ content.field_csr }}
 		</div>
 
 		<!-- Button -->
 		<div class="row">
 			<div class="center padded col-sm-12">
-				<a href="{{ content.field_url }}" target="_blank" class="button accent">View online</a>
+				<a href="{{ node.field_url.value }}" target="_blank" class="button accent">{{ 'View online'|t }}</a>
 			</div>
 		</div><!-- END -->
 	</section>
@@ -241,9 +229,9 @@
 			<!-- Actions -->
 			<div class="row">
 				<div class="actions padded col-lg-12">
-					<a class="button accent-alt" href="#">Contact us</a>
+					<a class="button accent-alt" href="#">{{ 'Contact us'|t }}</a>
 					<span class="choice">or</span>
-					<a class="button gray" href="#">View Blog</a>
+					<a class="button gray" href="#">{{ 'View Blog'|t }}</a>
 				</div>
 			</div><!-- END -->
 		</div>

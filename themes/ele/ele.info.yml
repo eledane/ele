@@ -7,3 +7,8 @@ base theme: stable
 libraries:
   - ele/global-css
   - ele/global-js
+
+regions:
+  header: 'Header'
+  content: 'Content'
+  footer: 'Footer'

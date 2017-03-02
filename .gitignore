@@ -5,3 +5,5 @@ themes/ele/templates/*.swap
 sites/default/services.yml
 sites/default/settings.php
 sites/default/files/*
+sites/development.services.yml
+sites/default/settings.local.php
