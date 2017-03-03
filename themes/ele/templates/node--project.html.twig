@@ -71,8 +71,8 @@
  */
 #}
 	<!-- Begin Small Hero Block -->
-  {{ file_url(node.field_project_header_background.entity.fileuri) }}
-	<section class="hero small accent parallax" style="background-image: url({{ file_url( directory ~ '/images/hero-project.jpg') }}">
+  {# file_url(node.field_project_header_background.entity.fileuri) #}
+	<section class="hero small accent parallax" style="background-image: url({{ node.field_project_header_background.entity.uri.value | image_style('project_header_background') }})"> 
 
 		<!-- Heading -->
 		<div class="hero-content container">
@@ -106,13 +106,14 @@
 	</section>
 	<!-- End Overview Block -->
 
+ 
+
 	<!-- Begin Project Slider Block -->
 	<section class="project-gallery">
 		<ul class="project-slider">
-			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide1.jpg') }}" alt=""></li>
-			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide2.jpg') }}" alt=""></li>
-			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide3.jpg') }}" alt=""></li>
-			<li><img class="bg-check" src="{{ file_url( directory ~ '/images/work/slide4.jpg') }}" alt=""></li>
+      {% for i in node.field_project_slider %}
+			  <li><img class="bg-check" src="{{ i.entity.uri.value | image_style('project_slider_image') }}" alt=""></li>
+      {% endfor %}
 		</ul>
 		<div class="project-prev"></div>
 		<div class="project-next"></div>
@@ -151,49 +152,11 @@
 		
 		<div class="center-mobile content container">
 
-			<!-- Title -->
-			<div class="row">
-				<div class="title col-sm-6 col-sm-push-6">
-					<h2>What we did.</h2>
-					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium dolores et quas molestias..</p>
-				</div>
-			</div><!-- END-->
-
-			<!-- Features -->
-			<div class="row">
-				<div class="feature col-sm-6 col-sm-push-6 clearfix">
-					<i class="icon gray albums"></i><h3>Wireframing.</h3>
-					<p class="small">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium molestias.</p>
-				</div>
-			</div><!-- END -->
-
-			<!-- Features -->
-			<div class="row">
-				<div class="feature col-sm-6 col-sm-push-6 clearfix">
-					<i class="icon gray repeat"></i><h3>Revisions.</h3>
-					<p class="small">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium lorem ipsum.</p>
-				</div>
-			</div><!-- END -->
-
-			<!-- Features -->
-			<div class="row">
-				<div class="feature col-sm-6 col-sm-push-6 clearfix">
-					<i class="icon gray mouse"></i><h3>Design.</h3>
-					<p class="small">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-				</div>
-			</div><!-- END -->
-
-			<!-- Features -->
-			<div class="row">
-				<div class="feature col-sm-6 col-sm-push-6 clearfix">
-					<i class="icon gray browser"></i><h3>Development.</h3>
-					<p class="small">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium molestias.</p>
-				</div>
-			</div><!-- END -->
-		
+       {{ content.field_side_desc }}
+	
 		</div>
 
-		<div class="image-absolute"></div>
+		<div class="image-absolute" style="background:url({{ node.field_side_img.entity.uri.value | image_style('project_side_img') }})"></div>
 	</section>
 	<!-- End Feature Block -->
 
