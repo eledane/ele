@@ -15,7 +15,44 @@ function ele_theme_suggestions_page_alter(array &$suggestions, array $variables)
             $content_type = $node->bundle();
             $suggestions[] = 'page__'.$content_type;
        }
+
+
   }
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+
+function ele_preprocess_page(&$variables) {
+
+      $current_path = \Drupal::service('path.current')->getPath();
+      $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+      if( $path_alias == '/works'){
+        
+       $terms = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree('project_category', $parent = 0, $max_depth = NULL, $load_entities = FALSE);
+
+      $variables['product_category'] = '<li class="filter" data-filter="all">'. t('all'). '</li>' . "\n";
+
+        foreach ( $terms as $term ){
+
+          $variables['product_category'] .= '<li class="filter" data-filter="'. $term->name .'">'. $term->name .'</li>' . "\n";
+
+          }
+        
+/*
+        $query = \Drupal::entityQuery('node')
+            ->condition('status', 1)
+            ->condition('type', 'project')
+            ->->fields( 'nid' );
+        $nids = $query->execute();
+*/
+        }
+
+}
+
+
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
