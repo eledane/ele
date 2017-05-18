@@ -1,0 +1,201 @@
+	<!-- Begin Navigation -->
+{% include '@ele/includes/header.html.twig' %}
+
+	<!-- Begin Large Hero Block -->
+	<section class="hero accent parallax" style="background-image: url({{ directory }}/images/3a.jpg);">
+
+		<!-- Heading -->
+		<div class="hero-content container">
+			<p><em>The power of your brand - back in your hands.</em></p>
+			<h1>Show off your work. The right way.</h1>
+		</div><!-- END -->
+
+		<!-- Button -->
+		<div class="sub-hero container">
+			<span class="line"></span>
+			<a href="about.html" class="button white">Learn More</a>
+		</div><!-- END -->
+
+	</section>
+	<!-- End Large Hero Block -->
+
+	<!-- Begin Overview Block -->
+	<section class="center-mobile content container">
+		<div class="row">
+
+			<div class="col-sm-4">
+				<h2>What.</h2>
+				<p>Say hello to Form - a new revolution in template design and usability. The power of your brand - back in your hands not your designer.</p>
+			</div>
+			<div class="col-sm-4">
+				<h2>Who.</h2>
+				<p>This template is a perfect fit for both beginners and experts at web design. It is built around pure simplicity and features amazing innovations.</p>
+			</div>
+			<div class="col-sm-4">
+				<h2>How.</h2>
+				<p>With a new approach to building templates - gone are the days of wondering what to edit. You have the power to build yourself!</p>
+			</div>
+
+		</div>
+	</section>
+	<!-- End Overview Block -->
+
+	<!-- Begin Video Background Block -->
+	<section class="video-background content dark">
+		<div id="bgVideo"></div>
+		<div class="container">
+
+			<!-- Title -->
+			<div class="row">
+				<div class="center title col-lg-12">
+					<h2>Our services.</h2>
+					<p>A selection of services you can edit to show what you can do.</p>
+				</div>
+			</div><!-- END -->
+
+			<!-- Phases -->
+			<ul class="center-mobile phases row">
+				<li class="col-sm-4 clearfix"><h3><i class="icon white target"></i>Branding.</h3><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p></li>
+				<li class="col-sm-4 clearfix"><h3><i class="icon white camera"></i>Photography.</h3><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium molestias.</p></li>
+				<li class="col-sm-4 clearfix"><h3><i class="icon white browser"></i>Web design.</h3><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p></li>
+			</ul>
+
+			<!-- Button -->
+			<div class="row">
+				<div class="center padded col-lg-12">
+					<a href="about.html" class="button white">Learn more</a>
+				</div>
+			</div><!-- END -->
+
+		</div>
+	</section>
+	<!-- End Video Background Block -->
+
+	<!-- Begin Feature Block -->
+
+<section class="feature-box light absolute clearfix">
+		
+		<div class="content container center-mobile">
+
+			<!-- Title -->
+			<div class="row">
+				<div class="title col-sm-6 col-sm-push-6">
+					<h2>Our services.</h2>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium dolores et quas molestias. Sed ut perspiciatis unde omnis iste natus error.</p>
+				</div>
+			</div><!-- END-->
+
+			<!-- Features -->
+			<div class="row">
+				<div class="feature col-sm-6 col-sm-push-6 clearfix">
+					<i class="icon gray target"></i><h3>Branding.</h3>
+					<p class="small">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium molestias.</p>
+				</div>
+			</div><!-- END -->
+
+			<!-- Features -->
+			<div class="row">
+				<div class="feature col-sm-6 col-sm-push-6 clearfix">
+					<i class="icon gray monitor"></i><h3>Graphic design.</h3>
+					<p class="small">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium lorem ipsum.</p>
+				</div>
+			</div><!-- END -->
+
+			<!-- Features -->
+			<div class="row">
+				<div class="feature col-sm-6 col-sm-push-6 clearfix">
+					<i class="icon gray browser"></i><h3>Web design.</h3>
+					<p class="small">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium molestias.</p>
+				</div>
+			</div><!-- END -->
+
+			<!-- Button -->
+			<div class="row">
+				<div class="feature col-sm-6 col-sm-offset-6">
+					<a href="about.html" class="button gray">Learn More</a>
+				</div>
+			</div><!-- END -->
+		
+		</div>
+
+		<div class="image-absolute"></div>
+	</section>
+
+
+	<!-- End Feature Block -->
+
+
+
+	<!-- Begin Recent Work  Block -->
+	<section class="recent-work content dark parallax" style="background-image: url({{ directory }}/images/ipad-hands.jpg);">
+
+			<!-- Title and Subtitle -->
+			<div class="container">
+				<div class="row">
+				<div class="col-sm-12 center">
+					<h2>Our recent work.</h2>
+					<p>A selection of hand-picked portfolio items. Super-easy to include or remove from your designs.</p>
+				</div>
+				</div>
+			</div><!-- END -->
+
+			<!-- Slider -->
+			<div id="recent-gallery" class="royalSlider rsDefault visibleNearby">
+			{{ home_project_lists | raw }}	
+			</div><!-- END -->
+
+      {% set works_id = 3 %}
+			<!-- Button -->
+			<div class="container">
+				<div class="center padded col-sm-12">
+					<a href="{{ path('entity.node.canonical', {'node': works_id}) }}" class="button white">{{ 'View work'|t }}</a>
+				</div>
+			</div><!-- END -->
+
+	</section>
+	<!-- End Recent Work Block -->
+
+	<!-- Begin Client Logos Block -->
+	<section class="clients container">
+		<div class="row">
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/1.jpg" alt="client">
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/2.jpg" alt="client">
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/3.jpg" alt="client">
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/4.jpg" alt="client">
+			</div>
+		</div>
+	</section>
+	<!-- End Client Logos Block -->
+
+	<!-- Begin Call to Action Block -->
+	<section class="call-to-action content light">
+		<div class="container">
+
+			<!-- Title -->
+			<div class="row">
+				<div class="title col-lg-12">
+					<h2>Are you impressed?</h2>
+					<p>If so, why don’t you get in touch with us so we can talk about your projects.</p>
+				</div>
+			</div><!-- END -->
+
+			<!-- Actions -->
+			<div class="row">
+				<div class="actions padded col-lg-12">
+					<a class="button accent-alt" href="#">Contact us</a>
+					<span class="choice">or</span>
+					<a class="button gray" href="#">View Blog</a>
+				</div>
+			</div><!-- END -->
+		</div>
+	</section>
+	<!-- End Call to Action Block -->
+
+{% include '@ele/includes/footer.html.twig' %}

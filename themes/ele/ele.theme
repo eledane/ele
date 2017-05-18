@@ -1,5 +1,6 @@
 <?php
 use Drupal\image\Entity\ImageStyle;
+use Drupal\file\Entity\File;
 
 /**
  * @file
@@ -40,14 +41,78 @@ function ele_preprocess_page(&$variables) {
           $variables['product_category'] .= '<li class="filter" data-filter="'. $term->name .'">'. $term->name .'</li>' . "\n";
 
           }
-        
-/*
+       
         $query = \Drupal::entityQuery('node')
             ->condition('status', 1)
-            ->condition('type', 'project')
-            ->->fields( 'nid' );
+            ->condition('type', 'project');
+        
         $nids = $query->execute();
-*/
+        $nodes = entity_load_multiple('node', $nids);
+
+        $variables['project_lists'] = '';
+         foreach( $nodes as $node ) {
+           //get node title
+           $title = $node->getTitle(); 
+
+            //get taxonomy name
+           $cat = $node->get('field_project_category')->getString();
+           $term = \Drupal\taxonomy\Entity\Term::load($cat);
+           $cat_name = $term->getName();
+
+            //original image path
+           $img_id = $node->get('field_project_header_background')->getValue();
+           $img = File::load($img_id[0]['target_id']);
+
+
+           //$img_header ='/' . drupal_get_path('theme','ele') . '/images/work/2.jpg';
+           $img_header = ImageStyle::load('project_list_expand_img')->buildUrl($img->getFileUri());
+          // $img_pure = explode("?itok=", $img_header );
+
+           $img_list = ImageStyle::load('project_list_image')->buildUrl($img->getFileUri());
+            //alias url of a node 
+            $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->get('nid')->value);
+
+            $variables['project_lists'] .= '<li class="thumbnail mix ' . $cat_name . ' mix_all">
+              <a href="' . $img_header . '" class="lightbox" data-caption="<a href=\'' . $alias . '\'>' . $title . '</a>">
+                <img src="' . $img_list . '" alt="thumbnail">
+                <div class="projectinfo">
+                  <div class="meta caption">
+                    <h4>' . $title . '</h4>
+                  </div>
+                </div>
+              </a>
+            </li>' . "\n";
+            
+          }
+
+        }
+
+      $is_front = \Drupal::service('path.matcher')->isFrontPage();
+
+        if($is_front == TRUE)  {
+
+          $h_query = \Drupal::entityQuery('node')
+            ->condition('status', 1)
+            ->condition('type', 'project');
+        
+        $h_nids = $h_query->execute();
+        $h_nodes = entity_load_multiple('node', $h_nids);
+
+        $variables['home_project_lists'] = '';
+
+         foreach( $h_nodes as $h_node ) {
+  
+           $h_title = $h_node->getTitle(); 
+
+           $h_img_id = $h_node->get('field_project_header_background')->getValue();
+           $h_img = File::load($h_img_id[0]['target_id']);
+           $h_img_list = ImageStyle::load('project_list_image')->buildUrl($h_img->getFileUri());
+
+            $variables['home_project_lists'] .= '<a class="rsImg" href="' . $h_img_list . '" data-rsw="566" data-rsh="375" data-caption="' . $h_title  . '"></a>' . "\n";
+
+
+              }   
+        
         }
 
 }

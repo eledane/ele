@@ -79,11 +79,12 @@
 			<h1>{{ node.getTitle }}.</h1>
 		</div><!-- END -->
 
+    {% set works_id = 3 %}
 		<!-- Navigation -->
 		<div class="sub-hero container">
 			<ul class="project-nav">
 				<li class="prev-project clearfix"><a href="#">{{ 'Previous'|t }}</a></li>
-				<li class="all-project clearfix"><a href="portfolio.html"><i class="icon keypad white"></i></a></li>
+				<li class="all-project clearfix"><a href="{{ path('entity.node.canonical', {'node': works_id}) }}"><i class="icon keypad white"></i></a></li>
 				<li class="next-project clearfix"><a href="#">{{ 'Next'|t }}</a></li>
 			</ul>
 		</div><!-- END -->
