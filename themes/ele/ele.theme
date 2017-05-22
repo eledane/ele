@@ -2,6 +2,8 @@
 use Drupal\image\Entity\ImageStyle;
 use Drupal\file\Entity\File;
 
+//only for development,remove it when deploy on production
+require_once('modules/devel/kint/kint/Kint.class.php');
 /**
  * @file
  * Functions to support theming in the ele theme.
@@ -122,6 +124,7 @@ function ele_preprocess_page(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
+/*
 function ele_preprocess_node(&$variable) {
    if ($variable['node']->getType() === 'project') {
      //$variables['header_bg'] = $variables['node']->field_project_header_backgroud;
@@ -129,3 +132,36 @@ function ele_preprocess_node(&$variable) {
 //      $variables['header_bg'] = file_create_url($node->field_project_header_background->entity->getFileUri());
   }      
 }
+*/
+
+
+
+/**
+* Implements hook_preprocess_menu() for menu--main.html.twig.
+* https://www.drupal.org/node/2576827
+*/
+function ele_preprocess_menu(&$variables, $hook) {
+
+  if ($hook == 'menu__main') {
+
+        $current_path = \Drupal::request()->getRequestUri();
+        $items = $variables['items'];
+
+             foreach ($items as $key => $item) {
+      // Set active to dom element if path of menu item matches current path
+            if ($item['url']->toString() == $current_path) {
+            // Add active link.
+            $variables['items'][$key]['attributes']->addClass('current-page');
+            } else {
+                // Set active to dom element if path of menu item matches first part of current path
+                $url_fragments = explode('/', $current_path);
+                if (count($url_fragments) > 1 AND '/' . $url_fragments[1] == $item['url']->toString()) {
+
+                  $variables['items'][$key]['attributes']->addClass('current-page');
+                }
+            }
+      }
+ 
+    }
+
+ }
