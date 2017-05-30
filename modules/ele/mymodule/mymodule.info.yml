@@ -1,6 +1,6 @@
 name: My Module!
 type: module
 description: Customized module for drupal8 site by alex!
-package: Alex
+package: ele 
 core: 8.x
 

@@ -1,0 +1,6 @@
+name: Ele config form
+description: Config form for ele theme , created for footer, homepage and other pages
+type: module
+version: 1.0
+package: ele
+core: 8.x

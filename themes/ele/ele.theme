@@ -165,3 +165,11 @@ function ele_preprocess_menu(&$variables, $hook) {
     }
 
  }
+
+ // $myConfig = \Drupal::config('ele_form.settings'); // at the top of the method
+          
+                  // Somewhere later in the method
+ // $first = $myConfig->get('home_first_title');
+ // $first_desc = $myConfig->get('home_first_desc');
+ // var_dump($first);
+ // var_dump($first_desc);

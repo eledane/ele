@@ -1,0 +1,7 @@
+ele_form.settings:
+  path: '/admin/config/system/ele-settings'
+  defaults:
+    _title: 'Ele theme settings'
+    _form: '\Drupal\ele_form\Form\EleSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

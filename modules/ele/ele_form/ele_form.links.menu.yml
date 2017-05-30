@@ -1,0 +1,5 @@
+ele_form.admin:
+  title: 'Ele theme settings'
+  parent: system.admin_config_system
+  description: 'ele theme settings link'
+  route_name: ele_form.settings
