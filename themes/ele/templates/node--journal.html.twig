@@ -1,0 +1,199 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+	
+<!-- Begin Small Hero Block -->
+	<section class="hero small accent parallax" style="background-image: url(/{{ base_path ~ directory }}/images/hero-blog.jpg)">
+	
+  <!--
+  <section class="hero small accent parallax" style="background-image: url({{ node.field_journal_background.entity.uri.value | image_style('project_header_background') }}">
+-->
+		<!-- Heading -->
+		<div class="hero-content container">
+			<h1>{{ node.getTitle }}.</h1>
+		</div><!-- END -->
+
+		<!-- Button -->
+		<div class="sub-hero container">
+			<span class="line"></span>
+		</div><!-- END -->
+
+	</section>
+	<!-- End Small Hero Block -->
+
+	<!-- Begin Blog Block -->
+	<section class="content container">
+		<div class="row">
+
+			<!-- Begin Posts -->
+			<div class="col-sm-8">
+
+				<!-- Standard Post -->
+				<div class="post image">
+					<span class="date">{{ node.getCreatedTime()|date('d') }}<br><small>{{ node.getCreatedTime()|date('m') }}</small></span>
+					<div class="post-title">
+						<h2>{{ node.getTitle }}.</h2>
+						<div class="post-meta">
+							<h6>Posted by <a href="#">{{ author_name }}</a> / <a href="#">Standard</a></h6>							
+						</div>
+					</div>
+					<div class="post-media">
+						<img src="{{ node.field_inline_image.entity.uri.value | image_style('journal_inline_img') }}" alt="">
+					</div>
+
+					<div class="post-body">
+          {{ content.body }}
+					</div>			
+						
+					
+				</div><!-- END -->
+
+			</div><!-- END -->
+
+
+
+			<!-- Begin Sidebar -->
+			<div class="col-sm-4">
+				<div class="sidebar">
+
+					<!-- search widget -->
+					<div class="widget clearfix">
+						<form action="#" >
+							<input name="s" id="s" type="text" class="search" placeholder="Search.." value="" />
+							<input type="submit" value="Go" class="search-submit" />
+						</form>
+					</div><!-- END -->
+
+					<!-- text widget -->
+					<div class="widget">
+						<h5>TEXT WIDGET</h5>
+						<div class="textwidget"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p></div>
+					</div><!-- END -->
+
+					<!-- categories widget -->
+					<div class="widget">
+						<h5>CATEGORIES</h5>
+						<ul>
+							<li class="cat-item"><a href="#">Standard</a> (3)</li>
+							<li class="cat-item"><a href="#">Video</a> (6)</li>
+							<li class="cat-item"><a href="#">Gallery</a> (12)</li>
+							<li class="cat-item"><a href="#">Quotes</a> (4)</li>
+						</ul>
+					</div><!-- END -->
+
+					<!-- tagcloud widget -->
+					<div class="widget">
+						<h5>TAGS</h5>
+						<div class="tagcloud">
+							<a href='#'>Portfolio</a>
+							<a href='#'>Tag</a>
+							<a href='#'>Demo</a>
+							<a href='#'>Blog</a>
+						</div>
+					</div><!-- END -->
+
+					<!-- archives widget -->
+					<div class="widget widget-archive">
+						<h5>Archives</h5>
+						<ul>
+							<li><a href="#">July 2013</a></li>
+							<li><a href="#">June 2013</a></li>
+						</ul>
+					</div><!-- END -->
+
+					<!-- recent comments widget -->
+					<div class="widget widget-recent-comments">
+				        <h5>Recent Comments</h5>
+				        <ul id="recentcomments">
+				            <li class="recentcomments">Admin on <a href="#">Standard post with goodies.</a></li>
+				            <li class="recentcomments">Aether-Themes on <a href="#">Fluid video. Yeah we got that.</a></li>
+				            <li class="recentcomments">Admin on <a href="#">Gallery post with slider.</a></li>
+				        </ul>
+				    </div><!-- END -->
+
+				    <!-- recent posts widget -->
+				    <div class="widget widget-recent-entries">		
+				    	<h5>Recent Posts</h5>		
+				    	<ul>
+				    		<li><a href="#" title="Post Title">Standard post with goodies.</a></li>
+							<li><a href="#" title="Post Title">Fluid video. Yeah we got that.</a></li>
+							<li><a href="#" title="Post Title">Gallery post with slider.</a></li>
+						</ul>
+					</div><!-- END -->
+
+				</div>
+			</div><!-- END -->
+
+		</div>
+	</section>
+	<!-- End Blog Block -->
+
