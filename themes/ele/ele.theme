@@ -29,6 +29,7 @@ function ele_theme_suggestions_page_alter(array &$suggestions, array $variables)
 
 function ele_preprocess_page(&$variables) {
 
+      //works page
       $current_path = \Drupal::service('path.current')->getPath();
       $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
@@ -89,51 +90,119 @@ function ele_preprocess_page(&$variables) {
 
         }
 
+
+      //front page
       $is_front = \Drupal::service('path.matcher')->isFrontPage();
 
         if($is_front == TRUE)  {
-
+    
+          // for recent work section
           $h_query = \Drupal::entityQuery('node')
             ->condition('status', 1)
             ->condition('type', 'project');
-        
-        $h_nids = $h_query->execute();
-        $h_nodes = entity_load_multiple('node', $h_nids);
+            
+            $h_nids = $h_query->execute();
+            $h_nodes = entity_load_multiple('node', $h_nids);
 
-        $variables['home_project_lists'] = '';
+            $variables['home_project_lists'] = '';
 
-         foreach( $h_nodes as $h_node ) {
-  
-           $h_title = $h_node->getTitle(); 
+             foreach( $h_nodes as $h_node ) {
+      
+               $h_title = $h_node->getTitle(); 
 
-           $h_img_id = $h_node->get('field_project_header_background')->getValue();
-           $h_img = File::load($h_img_id[0]['target_id']);
-           $h_img_list = ImageStyle::load('project_list_image')->buildUrl($h_img->getFileUri());
+               $h_img_id = $h_node->get('field_project_header_background')->getValue();
+               $h_img = File::load($h_img_id[0]['target_id']);
+               $h_img_list = ImageStyle::load('project_list_image')->buildUrl($h_img->getFileUri());
 
-            $variables['home_project_lists'] .= '<a class="rsImg" href="' . $h_img_list . '" data-rsw="566" data-rsh="375" data-caption="' . $h_title  . '"></a>' . "\n";
+              $variables['home_project_lists'] .= '<a class="rsImg" href="' . $h_img_list . '" data-rsw="566" data-rsh="375" data-caption="' . $h_title  . '"></a>' . "\n";
+            }   
+            
+          //for featured work
+          $featured_work_query = \Drupal::entityQuery('node')
+            ->condition('status', 1)
+            ->range(0, 1)
+            ->condition('promote', 1)
+            ->sort('created', 'DESC')
+            ->condition('type', 'project');
+            
+            $featured_work_node_nid = $featured_work_query->execute();
+            $featured_wn_nid = array_values($featured_work_node_nid);
+            $featured_work_node = \Drupal::entityTypeManager()->getStorage('node')->load($featured_wn_nid[0]);
+           // Kint::dump($featured_work_node_nid);
 
+            //featured work side image url
+           $f_img_id = $featured_work_node->get('field_side_img')->getValue();
+           $f_img = File::load($f_img_id[0]['target_id']);
+           $variables['featured_side_image'] = ImageStyle::load('project_side_img')->buildUrl($f_img->getFileUri());
+    
+           $featured_side_desc = $featured_work_node->get('field_side_desc')->getValue();
+           $featured_node_desc = "\n";
+           //Kint::dump($featured_side_desc);
+             foreach( $featured_side_desc as $nu => $para){
+              $paras = Drupal\paragraphs\Entity\Paragraph::load($para['target_id']); 
+              $side_class = $paras->get('field_side_class')->getValue();
+              $side_title = $paras->get('field_side_title')->getValue();
+              $side_desc = $paras->get('field_side_desc')->getValue();
+               
+               if( $nu == 0 ){
+    
+                $featured_node_desc .= '<div class="row">
+                  <div class="title col-sm-6 col-sm-push-6">
+                    <h2>' . $side_title[0]['value'] . '</h2>
+                    <p>' . $side_desc[0]['value'] . '</p>
+                    </div>
+                    </div>' . "\n"; 
+                }else{
 
-              }   
-        
+                $featured_node_desc .= '<div class="row">
+                  <div class="feature col-sm-6 col-sm-push-6 clearfix">
+                    <i class="icon gray ' . $side_class[0]['value'] .'"></i><h3>' . $side_title[0] ['value']. '</h3>
+                    <p class="small">' . $side_desc[0]['value'] . '</p>
+                  </div>
+                </div>' . "\n";
+                           
+                 }
+
+               }
+                // featured node desc on side 
+               $variables['featured_node_desc'] = $featured_node_desc;
+
+               // featured node url alias
+               $variables['featured_node_alias'] = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $featured_wn_nid[0]);
+
         }
 
+      // global variables 
+       $eleConfig = \Drupal::config('ele_form.settings'); // at the top of the method
+                
+       $variables['home_first_title'] = $eleConfig->get('home_first_title');
+       $variables['home_first_desc'] = $eleConfig->get('home_first_desc');
+       $variables['home_second_title'] = $eleConfig->get('home_second_title');
+       $variables['home_second_desc'] = $eleConfig->get('home_second_desc');
+       $variables['home_third_title'] = $eleConfig->get('home_third_title');
+       $variables['home_third_desc'] = $eleConfig->get('home_third_desc');
+
+       $variables['home_second_what'] = $eleConfig->get('home_second_what');
+       $variables['home_second_what_desc'] = $eleConfig->get('home_second_what_desc');
+       $variables['home_second_who'] = $eleConfig->get('home_second_who');
+       $variables['home_second_who_desc'] = $eleConfig->get('home_second_who_desc');
+       $variables['home_second_how'] = $eleConfig->get('home_second_how');
+       $variables['home_second_how_desc'] = $eleConfig->get('home_second_how_desc');
+
+       $variables['home_third_small_title'] = $eleConfig->get('home_third_small_title');
+       $variables['home_third_strong_title'] = $eleConfig->get('home_third_strong_title');
+
+       $variables['home_work_section_title'] = $eleConfig->get('home_work_section_title');
+       $variables['home_work_section_desc'] = $eleConfig->get('home_work_section_desc');
+
+       $variables['home_contact_section_title'] = $eleConfig->get('home_contact_section_title');
+       $variables['home_contact_section_desc'] = $eleConfig->get('home_contact_section_desc');
+
+       $variables['site_footer_email'] = $eleConfig->get('site_footer_email');
+       $variables['site_footer_phone'] = $eleConfig->get('site_footer_phone');
+       $variables['site_footer_address'] = $eleConfig->get('site_footer_address');
+
 }
-
-
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-/*
-function ele_preprocess_node(&$variable) {
-   if ($variable['node']->getType() === 'project') {
-     //$variables['header_bg'] = $variables['node']->field_project_header_backgroud;
-      $node = $variable['node'];
-//      $variables['header_bg'] = file_create_url($node->field_project_header_background->entity->getFileUri());
-  }      
-}
-*/
-
 
 
 /**
@@ -164,12 +233,16 @@ function ele_preprocess_menu(&$variables, $hook) {
  
     }
 
- }
+}
 
- // $myConfig = \Drupal::config('ele_form.settings'); // at the top of the method
-          
-                  // Somewhere later in the method
- // $first = $myConfig->get('home_first_title');
- // $first_desc = $myConfig->get('home_first_desc');
- // var_dump($first);
- // var_dump($first_desc);
+
+/**
+ * Implements hook_theme().
+ */
+function ele_theme($existing, $type, $theme, $path) {
+      return [
+          'contact_message_feedback_form' => [
+          'render element' => 'form',
+          ],
+      ];
+  }
