@@ -103,7 +103,7 @@
 					<div class="post-title">
 						<h2>{{ node.getTitle }}.</h2>
 						<div class="post-meta">
-							<h6>Posted by <a href="#">{{ author_name }}</a> / <a href="#">Standard</a></h6>							
+							<h6> {{ 'Posted by'|t }} {{ author_name }} / {{ content.field_journal_tag }}</h6>							
 						</div>
 					</div>
 					<div class="post-media">
@@ -143,13 +143,9 @@
 					<div class="widget">
 						<h5>CATEGORIES</h5>
 						<ul>
-							<li class="cat-item"><a href="#">Standard</a> (3)</li>
-							<li class="cat-item"><a href="#">Video</a> (6)</li>
-							<li class="cat-item"><a href="#">Gallery</a> (12)</li>
-							<li class="cat-item"><a href="#">Quotes</a> (4)</li>
+          {{ journal_tax_list|raw }}
 						</ul>
 					</div><!-- END -->
-
 					<!-- tagcloud widget -->
 					<div class="widget">
 						<h5>TAGS</h5>

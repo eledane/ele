@@ -1,6 +1,8 @@
 <?php
 use Drupal\image\Entity\ImageStyle;
 use Drupal\file\Entity\File;
+use Drupal\Core\Url; 
+
 
 //only for development,remove it when deploy on production
 require_once('modules/devel/kint/kint/Kint.class.php');
@@ -202,7 +204,28 @@ function ele_preprocess_page(&$variables) {
        $variables['site_footer_phone'] = $eleConfig->get('site_footer_phone');
        $variables['site_footer_address'] = $eleConfig->get('site_footer_address');
 
+
 }
+
+
+/**
+ * preprocess_node
+ *
+ */
+function ele_preprocess_node(&$variables) {
+ 
+ //generate url of journal taxonomy
+
+       $j_terms = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree('journal', $parent = 0, $max_depth = NULL, $load_entities = FALSE);
+       $variables['journal_tax_list'] = '';
+       foreach($j_terms as $j_term ){
+         
+         $variables['journal_tax_list'] .= '<li class="cat-item"><a href="/journal/' . $j_term->name . '">' . $j_term->name . '</a></li>'; 
+         }
+
+  
+  }
+
 
 
 /**
