@@ -207,21 +207,101 @@ function ele_preprocess_page(&$variables) {
 
 }
 
+/**
+ *  Implemnts hoo_preprocess_node() for node
+ *
+ */
+
+function ele_preprocess_views_view(&$variables){
+      
+      //taxonomy url alias for page lever
+      $pj_terms = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree('journal', $parent = 0, $max_depth = NULL, $load_entities = FALSE);
+
+       $variables['page_journal_tax_list'] = '';
+
+       foreach($pj_terms as $pj_term ){
+         $page_term_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/taxonomy/term/' . $pj_term->tid); // Gets pathauto term alias
+         $variables['page_journal_tax_list'] .= '<li class="cat-item"><a href="' . $page_term_alias . '">' . $pj_term->name . '</a></li>'; 
+       }
+
+      //get current path for view title
+      $current_path = \Drupal::service('path.current')->getPath();
+      $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+     
+      $tax_name = explode("/", $path_alias);
+
+      if(count( $tax_name) > 2){
+      $variables['journal_view_title'] = t('Taxonomy:') .' '. $tax_name[2];
+      }
+
+
+      //recent journal on views page : taxonomy view and journal view
+
+          $view_recent_journal_query = \Drupal::entityQuery('node')
+                  ->condition('status', 1)
+                  ->range(0, 6)
+                  ->sort('created', 'DESC')
+                  ->condition('type', 'journal');
+       
+              
+              $view_recent_journal_nids = $view_recent_journal_query->execute();
+              $view_recent_journal_nodes = entity_load_multiple('node', $view_recent_journal_nids);
+
+              $variables['view_recent_journal'] = '';
+
+               foreach( $view_recent_journal_nodes as $view_recent_journal_node ) {
+                 //get node title
+                 $view_recent_journal_title = $view_recent_journal_node->getTitle(); 
+                 $view_recent_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$view_recent_journal_node->get('nid')->value);
+
+                $variables['view_recent_journal'] .= '<li><a href="' . $view_recent_alias .'" title="' . $view_recent_journal_title . '">' . $view_recent_journal_title . '</a></li>';
+              }
+ 
+}
+
+
+
 
 /**
- * preprocess_node
+ *  Implemnts hoo_preprocess_node() for node
  *
  */
 function ele_preprocess_node(&$variables) {
  
- //generate url of journal taxonomy
-
+        //taxonomy list in node--journal.html.twig
        $j_terms = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree('journal', $parent = 0, $max_depth = NULL, $load_entities = FALSE);
        $variables['journal_tax_list'] = '';
+
        foreach($j_terms as $j_term ){
-         
-         $variables['journal_tax_list'] .= '<li class="cat-item"><a href="/journal/' . $j_term->name . '">' . $j_term->name . '</a></li>'; 
+         $term_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/taxonomy/term/' . $j_term->tid); // Gets pathauto term alias
+         $variables['journal_tax_list'] .= '<li class="cat-item"><a href="' . $term_alias . '">' . $j_term->name . '</a></li>'; 
          }
+
+
+        //recent journal for node--journal.html.twig
+       if($variables['node']->getType() == 'journal'){ 
+
+          $recent_journal_query = \Drupal::entityQuery('node')
+                  ->condition('status', 1)
+                  ->range(0, 6)
+                  ->sort('created', 'DESC')
+                  ->condition('type', 'journal');
+       
+              
+              $recent_journal_nids = $recent_journal_query->execute();
+              $recent_journal_nodes = entity_load_multiple('node', $recent_journal_nids);
+
+              $variables['recent_journal'] = '';
+
+               foreach( $recent_journal_nodes as $recent_journal_node ) {
+                 //get node title
+                 $recent_journal_title = $recent_journal_node->getTitle(); 
+                 $recent_alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$recent_journal_node->get('nid')->value);
+
+                $variables['recent_journal'] .= '<li><a href="' . $recent_alias .'" title="' . $recent_journal_title . '">' . $recent_journal_title . '</a></li>';
+              }
+      }
+
 
   
   }

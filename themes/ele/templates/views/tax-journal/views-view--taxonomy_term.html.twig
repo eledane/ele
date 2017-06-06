@@ -36,7 +36,7 @@
 
 		<!-- Heading -->
 		<div class="hero-content container">
-			<h1>  {{ 'Taxonomy'|t }}.</h1>
+			<h1>  {{ journal_view_title }}.</h1>
 		</div><!-- END -->
 
 		<!-- Button -->
@@ -70,62 +70,22 @@
 						</form>
 					</div><!-- END -->
 
-					<!-- text widget -->
-					<div class="widget">
-						<h5>TEXT WIDGET</h5>
-						<div class="textwidget"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p></div>
-					</div><!-- END -->
-
 					<!-- categories widget -->
 					<div class="widget">
-						<h5>CATEGORIES</h5>
+						<h5>{{ 'CATEGORIES'|t }}</h5>
 						<ul>
-							<li class="cat-item"><a href="#">Standard</a> (3)</li>
-							<li class="cat-item"><a href="#">Video</a> (6)</li>
-							<li class="cat-item"><a href="#">Gallery</a> (12)</li>
-							<li class="cat-item"><a href="#">Quotes</a> (4)</li>
+            {{ page_journal_tax_list|raw }}
 						</ul>
 					</div><!-- END -->
-
-					<!-- tagcloud widget -->
-					<div class="widget">
-						<h5>TAGS</h5>
-						<div class="tagcloud">
-							<a href='#'>Portfolio</a>
-							<a href='#'>Tag</a>
-							<a href='#'>Demo</a>
-							<a href='#'>Blog</a>
-						</div>
-					</div><!-- END -->
-
-					<!-- archives widget -->
-					<div class="widget widget-archive">
-						<h5>Archives</h5>
-						<ul>
-							<li><a href="#">July 2013</a></li>
-							<li><a href="#">June 2013</a></li>
-						</ul>
-					</div><!-- END -->
-
-					<!-- recent comments widget -->
-					<div class="widget widget-recent-comments">
-				        <h5>Recent Comments</h5>
-				        <ul id="recentcomments">
-				            <li class="recentcomments">Admin on <a href="#">Standard post with goodies.</a></li>
-				            <li class="recentcomments">Aether-Themes on <a href="#">Fluid video. Yeah we got that.</a></li>
-				            <li class="recentcomments">Admin on <a href="#">Gallery post with slider.</a></li>
-				        </ul>
-				    </div><!-- END -->
 
 				    <!-- recent posts widget -->
-				    <div class="widget widget-recent-entries">		
-				    	<h5>Recent Posts</h5>		
+              <div class="widget widget-recent-entries">		
+				    	<h5>{{ 'Recent Journal'|t }}</h5>		
 				    	<ul>
-				    		<li><a href="#" title="Post Title">Standard post with goodies.</a></li>
-							<li><a href="#" title="Post Title">Fluid video. Yeah we got that.</a></li>
-							<li><a href="#" title="Post Title">Gallery post with slider.</a></li>
+              {{ view_recent_journal|raw }}
 						</ul>
-					</div><!-- END -->
+					</div>
+				    <!-- END -->
 
 				</div>
 			</div><!-- END -->
