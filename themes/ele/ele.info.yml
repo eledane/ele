@@ -9,6 +9,7 @@ libraries:
   - ele/global-js
 
 regions:
+  search: 'Search'
   header: 'Header'
   content: 'Content'
   footer: 'Footer'

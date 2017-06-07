@@ -349,3 +349,15 @@ function ele_theme($existing, $type, $theme, $path) {
           ],
       ];
   }
+
+/**
+ * Implements hook_theme().
+ */
+
+function ele_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if ($form_id == 'search_block_form') {
+//      Kint::dump($form);
+         $form['keys']['#attributes']['class'][] = 'search';
+         $form['keys']['#attributes']['placeholder'] = t('Search...');
+         }
+ }

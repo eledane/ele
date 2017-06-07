@@ -9,7 +9,7 @@ global-css:
 global-js:
   js:
     js/jquery.js: {}
-    js/retina.js: { scope: footer }
+#    js/retina.js: { scope: footer }
     js/backgroundcheck.js: { scope: footer }
     js/plugins.js: { scope: footer }
     js/main.js: { scope: footer} 
