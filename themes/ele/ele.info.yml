@@ -3,7 +3,7 @@ description: A customized theme for drupal8
 type: theme
 package: Ele
 core: 8.x
-base theme: stable 
+base theme: false 
 libraries:
   - ele/global-css
   - ele/global-js
