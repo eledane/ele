@@ -47,7 +47,7 @@
 	font-size: 1em;
 }
 
-nav.desktop #edit-keys{
+nav.desktop #views-exposed-form-search-search #edit-site{
 width: 455px;
 border: none;
 outline: none;
@@ -73,7 +73,7 @@ transition: background 0.25s linear;
 
 }
 
-nav.mobile #edit-keys {
+nav.mobile #views-exposed-form-search-search #edit-site {
 width: 100%;
 border: none;
 outline: none;
@@ -93,7 +93,7 @@ border: 1px solid #e0e0dd;
 border-radius: 4px;
 }
 
-#search-block-form .form-submit{
+#block-exposedsitesearchform #edit-submit-search{
 display:none;
 }
 

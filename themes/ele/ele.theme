@@ -3,7 +3,6 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\file\Entity\File;
 use Drupal\Core\Url; 
 
-
 //only for development,remove it when deploy on production
 require_once('modules/devel/kint/kint/Kint.class.php');
 /**
@@ -227,13 +226,12 @@ function ele_preprocess_views_view(&$variables){
       //get current path for view title
       $current_path = \Drupal::service('path.current')->getPath();
       $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
-     
+
       $tax_name = explode("/", $path_alias);
 
       if(count( $tax_name) > 2){
       $variables['journal_view_title'] = t('Taxonomy:') .' '. $tax_name[2];
       }
-
 
       //recent journal on views page : taxonomy view and journal view
 
@@ -319,18 +317,23 @@ function ele_preprocess_menu(&$variables, $hook) {
         $current_path = \Drupal::request()->getRequestUri();
         $items = $variables['items'];
 
+        $url_fragments = explode('/', $current_path);
+        //$last = end(array_keys($items));
+        $array_k = array_keys($items);
+        $count_k = count( $array_k ) - 1;
+        $last = $array_k[$count_k];
+
              foreach ($items as $key => $item) {
       // Set active to dom element if path of menu item matches current path
             if ($item['url']->toString() == $current_path) {
             // Add active link.
             $variables['items'][$key]['attributes']->addClass('current-page');
-            } else {
+            } elseif(count($url_fragments) > 1 AND '/' . $url_fragments[1] == $item['url']->toString()) {
                 // Set active to dom element if path of menu item matches first part of current path
-                $url_fragments = explode('/', $current_path);
-                if (count($url_fragments) > 1 AND '/' . $url_fragments[1] == $item['url']->toString()) {
-
                   $variables['items'][$key]['attributes']->addClass('current-page');
-                }
+            }else{
+              
+                 $variables['items'][$last]['attributes']->addClass('current-page');
             }
       }
  
@@ -355,9 +358,9 @@ function ele_theme($existing, $type, $theme, $path) {
  */
 
 function ele_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-    if ($form_id == 'search_block_form') {
+    if ($form_id == 'views_exposed_form') {
 //      Kint::dump($form);
-         $form['keys']['#attributes']['class'][] = 'search';
-         $form['keys']['#attributes']['placeholder'] = t('Search...');
+         $form['site']['#attributes']['class'][] = 'search';
+         $form['site']['#attributes']['placeholder'] = t('Search...');
          }
  }
