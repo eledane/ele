@@ -1,0 +1,5 @@
+services:
+  custom.prevnextnode_extension:
+    class: Drupal\ele_direction\TwigExtension\NodeDirection
+    tags:
+      - {name: twig.extension}

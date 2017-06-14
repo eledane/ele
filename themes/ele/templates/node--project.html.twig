@@ -80,12 +80,19 @@
 		</div><!-- END -->
 
     {% set works_id = 3 %}
+    {%
+        set prevNextInfo = { 'node_type': 'project', 'nid' : current_nid }
+     %}
 		<!-- Navigation -->
 		<div class="sub-hero container">
 			<ul class="project-nav">
-				<li class="prev-project clearfix"><a href="#">{{ 'Previous'|t }}</a></li>
+        {% if customPrevious(prevNextInfo) %}
+				<li class="prev-project clearfix"><a href="{{ customPrevious(prevNextInfo).path }}">{{ 'Previous'|t }}</a></li>
+        {% endif %}
 				<li class="all-project clearfix"><a href="{{ path('entity.node.canonical', {'node': works_id}) }}"><i class="icon keypad white"></i></a></li>
-				<li class="next-project clearfix"><a href="#">{{ 'Next'|t }}</a></li>
+        {% if customNext(prevNextInfo) %}
+				<li class="next-project clearfix"><a href="{{ customNext(prevNextInfo).path }}">{{ 'Next'|t }}</a></li>
+        {% endif %}
 			</ul>
 		</div><!-- END -->
 

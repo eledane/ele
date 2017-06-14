@@ -300,6 +300,7 @@ function ele_preprocess_node(&$variables) {
               }
       }
 
+      $variables['current_nid'] = $variables['node']->id();
 
   
   }

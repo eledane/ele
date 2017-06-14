@@ -1,0 +1,6 @@
+name: Ele direction
+description: Generate next or prev node link of project page, which will be a twig extension to ouput link on project detail page
+type: module
+version: 1.0
+package: ele
+core: 8.x
