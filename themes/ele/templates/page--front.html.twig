@@ -23,9 +23,7 @@
 
 			<!-- Button -->
 			<div class="row">
-				<div class="center padded col-lg-12">
-					<a href="javascript;" class="button white">{{ 'Learn more'|t }}</a>
-				</div>
+				
 			</div><!-- END -->
 
 		</div>
@@ -63,10 +61,11 @@
 			<h1>{{ home_third_strong_title }}</h1>
 		</div><!-- END -->
 
+   {% set works_id = 3 %}
 		<!-- Button -->
 		<div class="sub-hero container">
 			<span class="line"></span>
-			<a href="javascript" class="button white">{{ 'Learn More'|t }}</a>
+			<a href="{{ path('entity.node.canonical', {'node': works_id}) }}" class="button white">{{ 'Learn More'|t }}</a>
 		</div><!-- END -->
 
 	</section>
@@ -100,7 +99,7 @@
 
 
 	<!-- Begin Recent Work  Block -->
-	<section class="recent-work content dark parallax" style="background-image: url({{ directory }}/images/latest_work_bg.png);">
+	<section class="recent-work content dark parallax" style="background-image: url({{ directory }}/images/latest_work_bg.jpg);">
 
 			<!-- Title and Subtitle -->
 			<div class="container">
@@ -117,11 +116,10 @@
 			{{ home_project_lists | raw }}	
 			</div><!-- END -->
 
-      {% set works_id = 3 %}
 			<!-- Button -->
 			<div class="container">
 				<div class="center padded col-sm-12">
-					<a href="{{ path('entity.node.canonical', {'node': works_id}) }}" class="button white">{{ 'View work'|t }}</a>
+					<a href="{{ path('entity.node.canonical', {'node': works_id}) }}" class="button white">{{ 'View works'|t }}</a>
 				</div>
 			</div><!-- END -->
 
@@ -175,9 +173,9 @@
 			<!-- Actions -->
 			<div class="row">
 				<div class="actions padded col-lg-12">
-					<a class="button accent-alt" href="#">{{ 'Contact us'|t }}</a>
+					<a class="button accent-alt" href="/contact-us">{{ 'Contact us'|t }}</a>
 					<span class="choice">{{ 'or'|t }}</span>
-					<a class="button gray" href="#">{{ 'View Blog'|t }}</a>
+					<a class="button gray" href="{{ path('view.journal.page_1') }}">{{ 'View Journal'|t }}</a>
 				</div>
 			</div><!-- END -->
 		</div>

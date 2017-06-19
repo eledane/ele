@@ -154,34 +154,27 @@
 	<!-- End Feature Block -->
 
 	<!-- Begin Milestone Block -->
-	<section class="container">
+	<section class="clients container">
 		<div class="row">
-
-			<!-- Milestone -->
-			<div class="milestone col-sm-4">
-				<span class="timer value" data-from="1000" data-to="1996" data-speed="1000" data-refresh-interval="100">0</span>
-				<h6>Year Founded</h6>
-			</div><!-- END -->
-
-			<!-- Milestone -->
-			<div class="milestone col-sm-4">
-				<span class="timer value" data-from="0" data-to="60" data-speed="1000" data-refresh-interval="100">0</span>
-				<h6>Employees</h6>
-			</div><!-- END -->
-
-			<!-- Milestone -->
-			<div class="milestone col-sm-4">
-				<span class="timer value" data-from="0" data-to="90" data-speed="1000" data-refresh-interval="100">0</span>
-				<h6>Projects</h6>
-			</div><!-- END -->
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/1.jpg" alt="client">
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/2.jpg" alt="client">
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/3.jpg" alt="client">
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+				<img src="{{ directory }}/images/logos/4.jpg" alt="client">
+			</div>
 
 		</div>
 	</section>
 	<!-- End Milestone Block -->
 
 	<!-- Begin Video Background Block -->
-	<section class="video-background content dark">
-		<div id="bgVideo"></div>
+	<section class="video-background content dark" style="background-image: url({{ directory }}/images/about.jpg);">
 		<div class="container">
 
 			<!-- Title -->
@@ -202,7 +195,7 @@
 			<!-- Button -->
 			<div class="row">
 				<div class="center padded col-lg-12">
-					<a href="portfolio.html" class="button white">View work</a>
+					<a href="{{ path('entity.node.canonical', {'node': 3}) }}" class="button white">{{ 'View works'|t }}</a>
 				</div>
 			</div><!-- END -->
 
@@ -217,17 +210,17 @@
 			<!-- Title -->
 			<div class="row">
 				<div class="title col-lg-12">
-					<h2>Are you impressed?</h2>
-					<p>If so, why don’t you get in touch with us so we can talk about your projects.</p>
+					<h2>{{ home_contact_section_title }}</h2>
+					<p>{{ home_contact_section_desc }}</p>
 				</div>
 			</div><!-- END -->
 
 			<!-- Actions -->
 			<div class="row">
 				<div class="actions padded col-lg-12">
-					<a class="button accent-alt" href="#">Contact us</a>
-					<span class="choice">or</span>
-					<a class="button gray" href="#">View Blog</a>
+					<a class="button accent-alt" href="/contact-us">{{ 'Contact us'|t }}</a>
+					<span class="choice">{{ 'or'|t }}</span>
+					<a class="button gray" href="{{ path('view.journal.page_1') }}">{{ 'View Journal'|t }}</a>
 				</div>
 			</div><!-- END -->
 		</div>

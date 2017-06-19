@@ -86,13 +86,9 @@
 		<!-- Navigation -->
 		<div class="sub-hero container">
 			<ul class="project-nav">
-        {% if customPrevious(prevNextInfo) %}
 				<li class="prev-project clearfix"><a href="{{ customPrevious(prevNextInfo).path }}">{{ 'Previous'|t }}</a></li>
-        {% endif %}
 				<li class="all-project clearfix"><a href="{{ path('entity.node.canonical', {'node': works_id}) }}"><i class="icon keypad white"></i></a></li>
-        {% if customNext(prevNextInfo) %}
 				<li class="next-project clearfix"><a href="{{ customNext(prevNextInfo).path }}">{{ 'Next'|t }}</a></li>
-        {% endif %}
 			</ul>
 		</div><!-- END -->
 
