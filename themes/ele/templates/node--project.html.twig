@@ -168,12 +168,13 @@
 	<section class="share-block container">
 
 		<!-- Title -->
-		<div class="row">
+  <div class="row">
 			<div class="title col-sm-12">
-				<h2>Sharing makes you an awesome human being.</h2>
-				<p>A selection of hand-picked share buttons. Super-easy to include or remove from your designs.</p>
+				<h2>{{ 'Detail description'|t }}.</h2>
+        {{ content.body }}
 			</div>
-		</div><!-- END-->
+		</div>
+		<!-- END-->
 
 		<!-- Share Buttons -->
 		<!-- END -->
@@ -194,13 +195,14 @@
 			</div><!-- END -->
 
 			<!-- Actions -->
-			<div class="row">
+    <div class="row">
 				<div class="actions padded col-lg-12">
-					<a class="button accent-alt" href="#">{{ 'Contact us'|t }}</a>
-					<span class="choice">or</span>
-					<a class="button gray" href="#">{{ 'View Blog'|t }}</a>
+					<a class="button accent-alt" href="/contact-us">{{ 'Contact us'|t }}</a>
+					<span class="choice">{{ 'or'|t }}</span>
+					<a class="button gray" href="{{ path('view.journal.page_1') }}">{{ 'View Journal'|t }}</a>
 				</div>
-			</div><!-- END -->
+			</div>
+			<!-- END -->
 		</div>
 	</section>
 	<!-- End Call to Action Block -->

@@ -89,17 +89,30 @@
 	<section class="clients container">
 		<div class="row">
 			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
-				<img src="{{ base_path ~ directory }}/images/logos/1.jpg" alt="client">
+			<a href="https://www.drupal.org/" target="_blank"><img src="{{ directory }}/images/partners/drupal-m.png" alt="client"></a>
 			</div>
 			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
-				<img src="{{ base_path ~ directory }}/images/logos/2.jpg" alt="client">
+			<a href="https://wordpress.org/" target="_blank"><img src="{{ directory }}/images/partners/wordpress-m.png" alt="client"></a>
 			</div>
 			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
-				<img src="{{ base_path ~ directory }}/images/logos/3.jpg" alt="client">
+			<a href="https://github.com/" target="_blank"><img src="{{ directory }}/images/partners/git-m.png" alt="client"></a>
 			</div>
 			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
-				<img src="{{ base_path ~ directory }}/images/logos/4.jpg" alt="client">
+			<a href="https://jquery.com/" target="_blank"><img src="{{ directory }}/images/partners/jquery-m.png" alt="client"></a>
 			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+			<a href="http://php.net/" target="_blank"><img src="{{ directory }}/images/partners/php-m.png" alt="client"></a>
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+			<a href="https://swift.org/" target="_blank"><img src="{{ directory }}/images/partners/swift-m.png" alt="client"></a>
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+			<a href="https://www.ubuntu.com" target="_blank"><img src="{{ directory }}/images/partners/ubuntu-m.png" alt="client"></a>
+			</div>
+			<div class="logo animated fade col-sm-3" data-appear-bottom-offset="100">
+			<a href="https://www.python.org/" target="_blank"><img src="{{ directory }}/images/partners/python-m.png" alt="client"></a>
+			</div>
+
 		</div>
 	</section>
 	<!-- End Client Logos Block -->
@@ -114,15 +127,14 @@
 					<h2>{{ home_contact_section_title }}</h2>
 					<p>{{ home_contact_section_desc }}</p>
 				</div>
-			</div>
-			<!-- END -->
+			</div><!-- END -->
 
 			<!-- Actions -->
 			<div class="row">
 				<div class="actions padded col-lg-12">
-					<a class="button accent-alt" href="#">Contact us</a>
-					<span class="choice">or</span>
-					<a class="button gray" href="#">View Blog</a>
+					<a class="button accent-alt" href="/contact-us">{{ 'Contact us'|t }}</a>
+					<span class="choice">{{ 'or'|t }}</span>
+					<a class="button gray" href="{{ path('view.journal.page_1') }}">{{ 'View Journal'|t }}</a>
 				</div>
 			</div><!-- END -->
 		</div>
